@@ -101,7 +101,7 @@ services:
     command: [ "/opt/spark/sbin/start-master.sh" ]
     volumes:
       - ./jobs:/opt/spark-jobs
-      - spark_data:/opt/spark-data
+      - ./data:/opt/spark-data
     depends_on:
       spark-init:
         condition: service_completed_successfully
@@ -125,7 +125,7 @@ services:
     command: [ "/opt/spark/sbin/start-worker.sh", "spark://spark-master:7077" ]
     volumes:
       - ./jobs:/opt/spark-jobs
-      - spark_data:/opt/spark-data
+      - ./data:/opt/spark-data
     networks:
       - streamflow-network
 
@@ -177,7 +177,7 @@ services:
       - ./dags:/opt/airflow/dags
       - ./scripts:/opt/airflow/scripts
       - ./jobs:/opt/spark-jobs
-      - spark_data:/opt/spark-data
+      - ./data:/opt/spark-data
       - ./logs:/opt/airflow/logs
       - airflow_data:/opt/airflow
     command: >
