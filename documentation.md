@@ -1,4 +1,4 @@
-### Architecture Diagram
+## Architecture Diagram
 
 Below is the detailed architecture of our stream analytics pipeline:
 
@@ -37,7 +37,7 @@ Below is the detailed architecture of our stream analytics pipeline:
 └────────────────────────┘
 ```
 
-### Design Decisions
+## Design Decisions
 
 | Component | Technology | Reason for Selection |
 |-----------|-----------|--------------------|
@@ -49,48 +49,50 @@ Below is the detailed architecture of our stream analytics pipeline:
 | **Custom Airflow Image** | **Airflow + JDK + Spark Client** | Extending the official Airflow image allows `spark-submit` to be executed directly from DAG tasks without additional configuration, simplifying Spark integration and eliminating version mismatch issues. |
 | **File Storage / Zones** | **Landing / Gold Zones (JSON → Parquet)** | Introducing a landing zone decouples ingestion from processing, enabling reprocessing and error recovery. The newly generated gold zone stores clean, transformed Parquet datasets ready for analytics. |
 
-### Setup Instructions
+## Setup Instructions
 
-# 1. Bring down all services
-docker compose down
-
-# 2. Start everything fresh (with rebuild)
+### 1. Start everything fresh (with rebuild)
+```
 docker compose up -d --build
+```
 
-# Wait for services to be healthy
-docker compose ps
-# All services should show "Up" or "Healthy"
+### 2. Start the Kafka producers
 
-# 3. Start the Kafka producers
-
-# User Events Producer (new terminal)
-source .venv/Scripts/activate
+2.1 User Events Producer (new terminal)
+```
 python user_events_producer.py --bootstrap-servers localhost:9094 --topic user_events --interval 0.1
+```
 
-# Transaction Events Producer (another terminal)
-source .venv/Scripts/activate
+2.2 Transaction Events Producer (another terminal)
+```
 python transaction_events_producer.py --bootstrap-servers localhost:9094 --topic transaction_events --interval 0.1
+```
 
-# 4. Check Airflow accessibility
+### 3. Check Airflow accessibility
+```
 docker exec streamflow-airflow airflow dags list
-# If you see ModuleNotFoundError:
+```
+
+If you see ModuleNotFoundError:
+```
 docker exec -it streamflow-airflow bash
+```
+```
 su airflow
+```
+```
 airflow dags list
+```
 
-# 5. Trigger the DAG manually
+### 4. Trigger the DAG manually
+```
 airflow dags trigger streamflow_main
+```
 
-# 6. Monitor in the Airflow UI
-# Open http://localhost:8082/
-# Watch the streamflow_main DAG run through all tasks
-# It should complete successfully with the fixes applied
-
-# 7. Check data directories (after DAG completes)
-ls -la data/landing/   # Should have new date directory
-ls -la data/gold/      # Should have new processed data
-
-
+### 5. Monitor in the Airflow UI
+Open http://localhost:8082/
+Watch the streamflow_main DAG run through all tasks
+It should complete successfully with the fixes applied
 
 
 
