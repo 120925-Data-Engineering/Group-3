@@ -27,7 +27,7 @@ def consume_batch(topic: str, batch_duration_sec: int, output_path: str) -> int:
     """
     consumer = KafkaConsumer(
         topic,
-        bootstrap_servers='localhost:9094',
+        bootstrap_servers='kafka:9092',
         auto_offset_reset='earliest',
         enable_auto_commit=True,
         value_deserializer=lambda v: json.loads(v.decode('utf-8')),
@@ -61,9 +61,14 @@ def consume_batch(topic: str, batch_duration_sec: int, output_path: str) -> int:
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
-    parser.add_argument("--topic", required=True)
+    parser.add_argument("--topics", nargs='+', default=['user_events', 'transaction_events'])
     parser.add_argument("--duration", type=int, default=30)
     parser.add_argument("--output-path", required=True)
     args = parser.parse_args()
 
-    consume_batch(args.topic, args.duration, args.output_path)
+    total_messages = 0
+    for topic in args.topics:
+        messages = consume_batch(topic, args.duration, args.output_path)
+        total_messages += messages
+        print(f"Consumed {messages} messages from {topic}")
+    print(f"Total messages consumed: {total_messages}")
