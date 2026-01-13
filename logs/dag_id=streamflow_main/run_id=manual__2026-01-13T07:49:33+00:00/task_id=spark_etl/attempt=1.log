@@ -1,0 +1,109 @@
+[2026-01-13T07:51:11.603+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: streamflow_main.spark_etl manual__2026-01-13T07:49:33+00:00 [queued]>
+[2026-01-13T07:51:11.642+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: streamflow_main.spark_etl manual__2026-01-13T07:49:33+00:00 [queued]>
+[2026-01-13T07:51:11.643+0000] {taskinstance.py:2170} INFO - Starting attempt 1 of 2
+[2026-01-13T07:51:11.712+0000] {taskinstance.py:2191} INFO - Executing <Task(BashOperator): spark_etl> on 2026-01-13 07:49:33+00:00
+[2026-01-13T07:51:11.732+0000] {standard_task_runner.py:60} INFO - Started process 318 to run task
+[2026-01-13T07:51:11.740+0000] {standard_task_runner.py:87} INFO - Running: ['***', 'tasks', 'run', 'streamflow_main', 'spark_etl', 'manual__2026-01-13T07:49:33+00:00', '--job-id', '4', '--raw', '--subdir', 'DAGS_FOLDER/dag_streamflow.py', '--cfg-path', '/tmp/tmpcrnbk1xa']
+[2026-01-13T07:51:11.748+0000] {standard_task_runner.py:88} INFO - Job 4: Subtask spark_etl
+[2026-01-13T07:51:11.929+0000] {task_command.py:423} INFO - Running <TaskInstance: streamflow_main.spark_etl manual__2026-01-13T07:49:33+00:00 [running]> on host 7e67da143af4
+[2026-01-13T07:51:13.003+0000] {taskinstance.py:2480} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='student' AIRFLOW_CTX_DAG_ID='streamflow_main' AIRFLOW_CTX_TASK_ID='spark_etl' AIRFLOW_CTX_EXECUTION_DATE='2026-01-13T07:49:33+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2026-01-13T07:49:33+00:00'
+[2026-01-13T07:51:13.007+0000] {subprocess.py:63} INFO - Tmp dir root location: /tmp
+[2026-01-13T07:51:13.017+0000] {subprocess.py:75} INFO - Running command: ['/usr/bin/bash', '-c', '\n        spark-submit         --master spark://spark-master:7077         /opt/spark-jobs/etl_job.py         --input_path /opt/spark-data/landing/2026-01-13         --output_path /opt/spark-data/gold/2026-01-13\n        ']
+[2026-01-13T07:51:13.090+0000] {subprocess.py:86} INFO - Output:
+[2026-01-13T07:51:13.185+0000] {subprocess.py:93} INFO - /opt/spark/bin/load-spark-env.sh: line 68: ps: command not found
+[2026-01-13T07:51:31.088+0000] {subprocess.py:93} INFO - 26/01/13 07:51:31 INFO SparkContext: Running Spark version 3.5.0
+[2026-01-13T07:51:31.108+0000] {subprocess.py:93} INFO - 26/01/13 07:51:31 INFO SparkContext: OS info Linux, 6.10.14-linuxkit, amd64
+[2026-01-13T07:51:31.111+0000] {subprocess.py:93} INFO - 26/01/13 07:51:31 INFO SparkContext: Java version 17.0.17
+[2026-01-13T07:51:31.672+0000] {subprocess.py:93} INFO - 26/01/13 07:51:31 WARN NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
+[2026-01-13T07:51:33.072+0000] {subprocess.py:93} INFO - 26/01/13 07:51:33 INFO ResourceUtils: ==============================================================
+[2026-01-13T07:51:33.076+0000] {subprocess.py:93} INFO - 26/01/13 07:51:33 INFO ResourceUtils: No custom resources configured for spark.driver.
+[2026-01-13T07:51:33.082+0000] {subprocess.py:93} INFO - 26/01/13 07:51:33 INFO ResourceUtils: ==============================================================
+[2026-01-13T07:51:33.083+0000] {subprocess.py:93} INFO - 26/01/13 07:51:33 INFO SparkContext: Submitted application: StreamFlow_Enrichment_Job
+[2026-01-13T07:51:33.160+0000] {subprocess.py:93} INFO - 26/01/13 07:51:33 INFO ResourceProfile: Default ResourceProfile created, executor resources: Map(memory -> name: memory, amount: 1024, script: , vendor: , offHeap -> name: offHeap, amount: 0, script: , vendor: ), task resources: Map(cpus -> name: cpus, amount: 1.0)
+[2026-01-13T07:51:33.352+0000] {subprocess.py:93} INFO - 26/01/13 07:51:33 INFO ResourceProfile: Limiting resource is cpu
+[2026-01-13T07:51:33.354+0000] {subprocess.py:93} INFO - 26/01/13 07:51:33 INFO ResourceProfileManager: Added ResourceProfile id: 0
+[2026-01-13T07:51:33.876+0000] {subprocess.py:93} INFO - 26/01/13 07:51:33 INFO SecurityManager: Changing view acls to: root
+[2026-01-13T07:51:33.879+0000] {subprocess.py:93} INFO - 26/01/13 07:51:33 INFO SecurityManager: Changing modify acls to: root
+[2026-01-13T07:51:33.884+0000] {subprocess.py:93} INFO - 26/01/13 07:51:33 INFO SecurityManager: Changing view acls groups to:
+[2026-01-13T07:51:33.895+0000] {subprocess.py:93} INFO - 26/01/13 07:51:33 INFO SecurityManager: Changing modify acls groups to:
+[2026-01-13T07:51:33.897+0000] {subprocess.py:93} INFO - 26/01/13 07:51:33 INFO SecurityManager: SecurityManager: authentication disabled; ui acls disabled; users with view permissions: root; groups with view permissions: EMPTY; users with modify permissions: root; groups with modify permissions: EMPTY
+[2026-01-13T07:51:35.533+0000] {subprocess.py:93} INFO - 26/01/13 07:51:35 INFO Utils: Successfully started service 'sparkDriver' on port 36421.
+[2026-01-13T07:51:35.805+0000] {subprocess.py:93} INFO - 26/01/13 07:51:35 INFO SparkEnv: Registering MapOutputTracker
+[2026-01-13T07:51:35.987+0000] {subprocess.py:93} INFO - 26/01/13 07:51:35 INFO SparkEnv: Registering BlockManagerMaster
+[2026-01-13T07:51:36.113+0000] {subprocess.py:93} INFO - 26/01/13 07:51:36 INFO BlockManagerMasterEndpoint: Using org.apache.spark.storage.DefaultTopologyMapper for getting topology information
+[2026-01-13T07:51:36.116+0000] {subprocess.py:93} INFO - 26/01/13 07:51:36 INFO BlockManagerMasterEndpoint: BlockManagerMasterEndpoint up
+[2026-01-13T07:51:36.140+0000] {subprocess.py:93} INFO - 26/01/13 07:51:36 INFO SparkEnv: Registering BlockManagerMasterHeartbeat
+[2026-01-13T07:51:36.306+0000] {subprocess.py:93} INFO - 26/01/13 07:51:36 INFO DiskBlockManager: Created local directory at /tmp/blockmgr-f9763a0c-4e6c-41dd-8284-9256195bae80
+[2026-01-13T07:51:36.420+0000] {subprocess.py:93} INFO - 26/01/13 07:51:36 INFO MemoryStore: MemoryStore started with capacity 434.4 MiB
+[2026-01-13T07:51:36.490+0000] {subprocess.py:93} INFO - 26/01/13 07:51:36 INFO SparkEnv: Registering OutputCommitCoordinator
+[2026-01-13T07:51:37.793+0000] {subprocess.py:93} INFO - 26/01/13 07:51:37 INFO JettyUtils: Start Jetty 0.0.0.0:4040 for SparkUI
+[2026-01-13T07:51:38.140+0000] {subprocess.py:93} INFO - 26/01/13 07:51:38 INFO Utils: Successfully started service 'SparkUI' on port 4040.
+[2026-01-13T07:51:41.210+0000] {subprocess.py:93} INFO - 26/01/13 07:51:41 INFO StandaloneAppClient$ClientEndpoint: Connecting to master spark://spark-master:7077...
+[2026-01-13T07:51:41.439+0000] {subprocess.py:93} INFO - 26/01/13 07:51:41 INFO TransportClientFactory: Successfully created connection to spark-master/172.18.0.4:7077 after 100 ms (0 ms spent in bootstraps)
+[2026-01-13T07:51:48.456+0000] {subprocess.py:93} INFO - 26/01/13 07:51:48 INFO StandaloneSchedulerBackend: Connected to Spark cluster with app ID app-20260113075148-0000
+[2026-01-13T07:51:48.513+0000] {subprocess.py:93} INFO - 26/01/13 07:51:48 INFO Utils: Successfully started service 'org.apache.spark.network.netty.NettyBlockTransferService' on port 44093.
+[2026-01-13T07:51:48.514+0000] {subprocess.py:93} INFO - 26/01/13 07:51:48 INFO NettyBlockTransferService: Server created on 7e67da143af4:44093
+[2026-01-13T07:51:48.525+0000] {subprocess.py:93} INFO - 26/01/13 07:51:48 INFO BlockManager: Using org.apache.spark.storage.RandomBlockReplicationPolicy for block replication policy
+[2026-01-13T07:51:48.556+0000] {subprocess.py:93} INFO - 26/01/13 07:51:48 INFO BlockManagerMaster: Registering BlockManager BlockManagerId(driver, 7e67da143af4, 44093, None)
+[2026-01-13T07:51:48.571+0000] {subprocess.py:93} INFO - 26/01/13 07:51:48 INFO BlockManagerMasterEndpoint: Registering block manager 7e67da143af4:44093 with 434.4 MiB RAM, BlockManagerId(driver, 7e67da143af4, 44093, None)
+[2026-01-13T07:51:48.579+0000] {subprocess.py:93} INFO - 26/01/13 07:51:48 INFO BlockManagerMaster: Registered BlockManager BlockManagerId(driver, 7e67da143af4, 44093, None)
+[2026-01-13T07:51:48.581+0000] {subprocess.py:93} INFO - 26/01/13 07:51:48 INFO BlockManager: Initialized BlockManager: BlockManagerId(driver, 7e67da143af4, 44093, None)
+[2026-01-13T07:51:49.202+0000] {subprocess.py:93} INFO - 26/01/13 07:51:49 INFO StandaloneAppClient$ClientEndpoint: Executor added: app-20260113075148-0000/0 on worker-20260113074538-172.18.0.5-44201 (172.18.0.5:44201) with 2 core(s)
+[2026-01-13T07:51:49.261+0000] {subprocess.py:93} INFO - 26/01/13 07:51:49 INFO StandaloneSchedulerBackend: Granted executor ID app-20260113075148-0000/0 on hostPort 172.18.0.5:44201 with 2 core(s), 1024.0 MiB RAM
+[2026-01-13T07:51:50.772+0000] {subprocess.py:93} INFO - 26/01/13 07:51:50 INFO StandaloneSchedulerBackend: SchedulerBackend is ready for scheduling beginning after reached minRegisteredResourcesRatio: 0.0
+[2026-01-13T07:52:38.657+0000] {subprocess.py:93} INFO - DEBUG: User Schema
+[2026-01-13T07:52:38.730+0000] {subprocess.py:93} INFO - root
+[2026-01-13T07:52:38.733+0000] {subprocess.py:93} INFO -  |-- browser: string (nullable = true)
+[2026-01-13T07:52:38.737+0000] {subprocess.py:93} INFO -  |-- city: string (nullable = true)
+[2026-01-13T07:52:38.742+0000] {subprocess.py:93} INFO -  |-- country: string (nullable = true)
+[2026-01-13T07:52:38.764+0000] {subprocess.py:93} INFO -  |-- device: string (nullable = true)
+[2026-01-13T07:52:38.776+0000] {subprocess.py:93} INFO -  |-- element_id: string (nullable = true)
+[2026-01-13T07:52:38.782+0000] {subprocess.py:93} INFO -  |-- event_id: string (nullable = true)
+[2026-01-13T07:52:38.789+0000] {subprocess.py:93} INFO -  |-- event_type: string (nullable = true)
+[2026-01-13T07:52:38.796+0000] {subprocess.py:93} INFO -  |-- ip_address: string (nullable = true)
+[2026-01-13T07:52:38.797+0000] {subprocess.py:93} INFO -  |-- page: string (nullable = true)
+[2026-01-13T07:52:38.798+0000] {subprocess.py:93} INFO -  |-- product_id: string (nullable = true)
+[2026-01-13T07:52:38.800+0000] {subprocess.py:93} INFO -  |-- quantity: long (nullable = true)
+[2026-01-13T07:52:38.801+0000] {subprocess.py:93} INFO -  |-- search_query: string (nullable = true)
+[2026-01-13T07:52:38.803+0000] {subprocess.py:93} INFO -  |-- session_id: string (nullable = true)
+[2026-01-13T07:52:38.808+0000] {subprocess.py:93} INFO -  |-- timestamp: string (nullable = true)
+[2026-01-13T07:52:38.815+0000] {subprocess.py:93} INFO -  |-- user_id: string (nullable = true)
+[2026-01-13T07:52:38.818+0000] {subprocess.py:93} INFO - 
+[2026-01-13T07:52:38.824+0000] {subprocess.py:93} INFO - DEBUG: Transaction Schema
+[2026-01-13T07:52:38.825+0000] {subprocess.py:93} INFO - root
+[2026-01-13T07:52:38.826+0000] {subprocess.py:93} INFO -  |-- billing_address: struct (nullable = true)
+[2026-01-13T07:52:38.830+0000] {subprocess.py:93} INFO -  |    |-- city: string (nullable = true)
+[2026-01-13T07:52:38.831+0000] {subprocess.py:93} INFO -  |    |-- country: string (nullable = true)
+[2026-01-13T07:52:38.836+0000] {subprocess.py:93} INFO -  |    |-- state: string (nullable = true)
+[2026-01-13T07:52:38.837+0000] {subprocess.py:93} INFO -  |    |-- street: string (nullable = true)
+[2026-01-13T07:52:38.841+0000] {subprocess.py:93} INFO -  |    |-- zip_code: string (nullable = true)
+[2026-01-13T07:52:38.842+0000] {subprocess.py:93} INFO -  |-- currency: string (nullable = true)
+[2026-01-13T07:52:38.844+0000] {subprocess.py:93} INFO -  |-- original_transaction_id: string (nullable = true)
+[2026-01-13T07:52:38.846+0000] {subprocess.py:93} INFO -  |-- payment_method: string (nullable = true)
+[2026-01-13T07:52:38.847+0000] {subprocess.py:93} INFO -  |-- products: array (nullable = true)
+[2026-01-13T07:52:38.848+0000] {subprocess.py:93} INFO -  |    |-- element: struct (containsNull = true)
+[2026-01-13T07:52:38.851+0000] {subprocess.py:93} INFO -  |    |    |-- category: string (nullable = true)
+[2026-01-13T07:52:38.853+0000] {subprocess.py:93} INFO -  |    |    |-- product_id: string (nullable = true)
+[2026-01-13T07:52:38.854+0000] {subprocess.py:93} INFO -  |    |    |-- product_name: string (nullable = true)
+[2026-01-13T07:52:38.855+0000] {subprocess.py:93} INFO -  |    |    |-- quantity: long (nullable = true)
+[2026-01-13T07:52:38.858+0000] {subprocess.py:93} INFO -  |    |    |-- unit_price: double (nullable = true)
+[2026-01-13T07:52:38.859+0000] {subprocess.py:93} INFO -  |-- shipping_address: struct (nullable = true)
+[2026-01-13T07:52:38.863+0000] {subprocess.py:93} INFO -  |    |-- city: string (nullable = true)
+[2026-01-13T07:52:38.865+0000] {subprocess.py:93} INFO -  |    |-- country: string (nullable = true)
+[2026-01-13T07:52:38.866+0000] {subprocess.py:93} INFO -  |    |-- state: string (nullable = true)
+[2026-01-13T07:52:38.867+0000] {subprocess.py:93} INFO -  |    |-- street: string (nullable = true)
+[2026-01-13T07:52:38.868+0000] {subprocess.py:93} INFO -  |    |-- zip_code: string (nullable = true)
+[2026-01-13T07:52:38.870+0000] {subprocess.py:93} INFO -  |-- status: string (nullable = true)
+[2026-01-13T07:52:38.871+0000] {subprocess.py:93} INFO -  |-- subtotal: double (nullable = true)
+[2026-01-13T07:52:38.872+0000] {subprocess.py:93} INFO -  |-- tax: double (nullable = true)
+[2026-01-13T07:52:38.874+0000] {subprocess.py:93} INFO -  |-- timestamp: string (nullable = true)
+[2026-01-13T07:52:38.876+0000] {subprocess.py:93} INFO -  |-- total: double (nullable = true)
+[2026-01-13T07:52:38.879+0000] {subprocess.py:93} INFO -  |-- transaction_id: string (nullable = true)
+[2026-01-13T07:52:38.880+0000] {subprocess.py:93} INFO -  |-- transaction_type: string (nullable = true)
+[2026-01-13T07:52:38.881+0000] {subprocess.py:93} INFO -  |-- user_id: string (nullable = true)
+[2026-01-13T07:52:38.882+0000] {subprocess.py:93} INFO - 
+[2026-01-13T07:52:46.885+0000] {subprocess.py:93} INFO - Writing to Gold Zone: /opt/spark-data/gold/2026-01-13
+[2026-01-13T07:53:16.075+0000] {subprocess.py:97} INFO - Command exited with return code 0
+[2026-01-13T07:53:16.436+0000] {taskinstance.py:1138} INFO - Marking task as SUCCESS. dag_id=streamflow_main, task_id=spark_etl, execution_date=20260113T074933, start_date=20260113T075111, end_date=20260113T075316
+[2026-01-13T07:53:16.672+0000] {local_task_job_runner.py:234} INFO - Task exited with return code 0
+[2026-01-13T07:53:17.001+0000] {taskinstance.py:3280} INFO - 1 downstream tasks scheduled from follow-on schedule check

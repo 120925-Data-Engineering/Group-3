@@ -1,0 +1,21 @@
+[2026-01-13T07:50:04.538+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: streamflow_main.ingest_kafka_to_landing scheduled__2026-01-12T00:00:00+00:00 [queued]>
+[2026-01-13T07:50:04.643+0000] {taskinstance.py:1956} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: streamflow_main.ingest_kafka_to_landing scheduled__2026-01-12T00:00:00+00:00 [queued]>
+[2026-01-13T07:50:04.655+0000] {taskinstance.py:2170} INFO - Starting attempt 1 of 2
+[2026-01-13T07:50:04.727+0000] {taskinstance.py:2191} INFO - Executing <Task(BashOperator): ingest_kafka_to_landing> on 2026-01-12 00:00:00+00:00
+[2026-01-13T07:50:04.765+0000] {standard_task_runner.py:60} INFO - Started process 286 to run task
+[2026-01-13T07:50:04.774+0000] {standard_task_runner.py:87} INFO - Running: ['***', 'tasks', 'run', 'streamflow_main', 'ingest_kafka_to_landing', 'scheduled__2026-01-12T00:00:00+00:00', '--job-id', '3', '--raw', '--subdir', 'DAGS_FOLDER/dag_streamflow.py', '--cfg-path', '/tmp/tmpjfs00hbp']
+[2026-01-13T07:50:04.782+0000] {standard_task_runner.py:88} INFO - Job 3: Subtask ingest_kafka_to_landing
+[2026-01-13T07:50:05.197+0000] {task_command.py:423} INFO - Running <TaskInstance: streamflow_main.ingest_kafka_to_landing scheduled__2026-01-12T00:00:00+00:00 [running]> on host 7e67da143af4
+[2026-01-13T07:50:05.681+0000] {taskinstance.py:2480} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='student' AIRFLOW_CTX_DAG_ID='streamflow_main' AIRFLOW_CTX_TASK_ID='ingest_kafka_to_landing' AIRFLOW_CTX_EXECUTION_DATE='2026-01-12T00:00:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2026-01-12T00:00:00+00:00'
+[2026-01-13T07:50:05.685+0000] {subprocess.py:63} INFO - Tmp dir root location: /tmp
+[2026-01-13T07:50:05.705+0000] {subprocess.py:75} INFO - Running command: ['/usr/bin/bash', '-c', '\n        python /opt/spark-jobs/ingest_kafka_to_landing.py         --output-path /opt/spark-data/landing/2026-01-12\n        ']
+[2026-01-13T07:50:05.755+0000] {subprocess.py:86} INFO - Output:
+[2026-01-13T07:51:09.611+0000] {subprocess.py:93} INFO - Wrote 1791 messages to /opt/spark-data/landing/2026-01-12/user_events_20260113_075038.json
+[2026-01-13T07:51:09.618+0000] {subprocess.py:93} INFO - Consumed 1791 messages from user_events
+[2026-01-13T07:51:09.621+0000] {subprocess.py:93} INFO - Wrote 1901 messages to /opt/spark-data/landing/2026-01-12/transaction_events_20260113_075108.json
+[2026-01-13T07:51:09.626+0000] {subprocess.py:93} INFO - Consumed 1901 messages from transaction_events
+[2026-01-13T07:51:09.635+0000] {subprocess.py:93} INFO - Total messages consumed: 3692
+[2026-01-13T07:51:09.765+0000] {subprocess.py:97} INFO - Command exited with return code 0
+[2026-01-13T07:51:09.873+0000] {taskinstance.py:1138} INFO - Marking task as SUCCESS. dag_id=streamflow_main, task_id=ingest_kafka_to_landing, execution_date=20260112T000000, start_date=20260113T075004, end_date=20260113T075109
+[2026-01-13T07:51:09.959+0000] {local_task_job_runner.py:234} INFO - Task exited with return code 0
+[2026-01-13T07:51:10.103+0000] {taskinstance.py:3280} INFO - 1 downstream tasks scheduled from follow-on schedule check
